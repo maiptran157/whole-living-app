@@ -1,6 +1,6 @@
 import types from './types';
 import axios from 'axios';
-import apiKey from '../config/api_key';
+// import apiKey from '../config/api_key';
 
 export const submitSearch = data => async dispatch => {
     console.log("data:", data);
@@ -10,6 +10,7 @@ export const submitSearch = data => async dispatch => {
         console.log("resp:", resp);
         dispatch({
             type: types.SUBMIT_SEARCH,
+            action: resp.data
             // quote: resp.data.message
         })
     } catch (err) {
