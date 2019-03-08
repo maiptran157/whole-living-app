@@ -15,11 +15,13 @@ class SearchBar extends Component {
         this.props.submitSearch(data).then(() => {
             console.log("submitFormHandler result:", this.props.locationList.search.locationList)
         })
+        this.props.history.push(`/result/region=${data.region}&&keyPlace=${data.keyPlace}`)
     }
 
     render() {
+        console.log(this.props);
         const { handleSubmit } = this.props;
-        return (<div className="row">
+        return (<div className="row search-bar-container">
             <form className="col s8 offset-s2 form-style" action="" onSubmit={handleSubmit(this.submitFormHandler)}>
                 <Field name="region" id="region" component={renderInput} label="Region" />
                 <Field name="keyPlace" id="keyPlace" component={renderInput} label="Key place" />
