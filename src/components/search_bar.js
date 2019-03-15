@@ -12,22 +12,19 @@ class SearchBar extends Component {
     }
 
     submitFormHandler = (data) => {
-        this.props.submitSearch(data).then(() => {
-            console.log("submitFormHandler result:", this.props.locationList.search.locationList)
-        })
-        this.props.history.push(`/result/region=${data.region}&&keyPlace=${data.keyPlace}`)
+        this.props.submitSearch(data);
+        this.props.history.push(`/result/address=${data.address}&keyPlace=${data.keyPlace}`)
     }
 
     render() {
-        console.log(this.props);
         const { handleSubmit } = this.props;
         return (<div className="row search-bar-container">
             <form className="col s8 offset-s2 form-style" action="" onSubmit={handleSubmit(this.submitFormHandler)}>
-                <Field name="region" id="region" component={renderInput} label="Region" />
-                <Field name="keyPlace" id="keyPlace" component={renderInput} label="Key place" />
+                <Field name="address" id="address" component={renderInput} label="Address" placeholder="I want to live at..." />
+                <Field name="keyPlace" id="keyPlace" component={renderInput} label="Key place" placeholder="I want to live near..." />
                 <div className="row">
                     <div className="s12 right-align">
-                        <button className="btn #4db6ac teal lighten-2">Submit</button>
+                        <button className="btn #4db6ac teal lighten-2">Find your neighborhood</button>
                     </div>
                 </div>
             </form>
@@ -36,11 +33,11 @@ class SearchBar extends Component {
 }
 
 function validate(data) {
-    const { region, keyPlace } = data;
+    const { address, keyPlace } = data;
     const errors = {};
 
-    if (!region) {
-        errors.region = 'Please fill out the region you want to live in.';
+    if (!address) {
+        errors.address = 'Please fill out the region you want to live in.';
     }
 
     if (!keyPlace) {
@@ -50,13 +47,7 @@ function validate(data) {
     return errors;
 }
 
-function mapStateToProps(state) {
-    return {
-        locationList: state
-    }
-}
-
-SearchBar = connect(mapStateToProps, {
+SearchBar = connect(null, {
     submitSearch: submitSearch
 })(SearchBar);
 

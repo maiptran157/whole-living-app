@@ -2,8 +2,15 @@
 } */
 
 .search-bar-container {
-    margin-top: 50px;
+    margin-top: 30px;
     padding-top: 50px;
     background-color: white;
     border-radius: 10px;
+    width: inherit;
+}
+
+.slogan-text {
+    margin-top: 20px;
+    font-size: 40px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
