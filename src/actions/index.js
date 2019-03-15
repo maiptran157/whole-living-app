@@ -5,16 +5,19 @@ import axios from 'axios';
 export const submitSearch = data => async dispatch => {
     console.log("data:", data);
     try {
-        // const resp = await axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${data.keyPlace.split(" ").join("+")}+in+${data.region}&key=${apiKey.GOOGLE_PLACES_API_KEY}`)
-        const resp = await axios.get(`http://localhost:5000/api/getGooglePlacesData?region=${data.region}&&keyPlace=${data.keyPlace}`)
-        console.log("resp:", resp);
+        const resp = await axios.get(`http://localhost:5000/api/getGooglePlacesData?address=${data.address}&&keyPlace=${data.keyPlace}`)
         dispatch({
             type: types.SUBMIT_SEARCH,
-            action: resp.data
-            // quote: resp.data.message
+            payload: resp.data
         })
     } catch (err) {
         console.log(err)                     //Axios entire error message
         //console.log(err.response.data.error) //Google API error message 
+    }
+}
+
+export const getSearchResult = () => {
+    return {
+        type: types.GET_SEARCH_RESULT
     }
 }
