@@ -14,12 +14,13 @@
 } */
 
 .container {
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
+  height: 78vh;
 }
 
 .background-image {
   height: -webkit-fill-available;
-  opacity: 0.7;
+  opacity: 0.85;
   width: 100vw;
   height: 100vh;
 }
