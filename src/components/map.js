@@ -65,13 +65,13 @@ const Marker = ({ name }) => {
 };
 
 class Map extends Component {
-    static defaultProps = {
-        // center: {
-        //     lat: 59.95,
-        //     lng: 30.33
-        // },
-        zoom: 11
-    };
+    // static defaultProps = {
+    //     // center: {
+    //     //     lat: 59.95,
+    //     //     lng: 30.33
+    //     // },
+    //     zoom: 11
+    // };
 
     renderMarker() {
         const { places } = this.props.locationList.payload;
@@ -94,8 +94,9 @@ class Map extends Component {
                 <div className="map-container">
                     <GoogleMapReact
                         bootstrapURLKeys={{ key: apiKey.GOOGLE_PLACES_API_KEY }}
-                        defaultCenter={mapCenter}
-                        defaultZoom={this.props.zoom}
+                        // defaultCenter={mapCenter}
+                        center={mapCenter}
+                        defaultZoom={11}
                         yesIWantToUseGoogleMapApiInternals
                         onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, places)}
                     >

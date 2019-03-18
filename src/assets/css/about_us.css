@@ -1,0 +1,8 @@
+.about-us-container h2 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.about-us-des {
+    font-size: 25px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
