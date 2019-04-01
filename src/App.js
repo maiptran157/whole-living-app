@@ -1,5 +1,4 @@
 import M from 'materialize-css';
-// import $ from 'jquery';
 import image1 from './assets/image/whole_living_background_1.jpeg';
 import image2 from './assets/image/whole_living_background_2.jpeg';
 import image3 from './assets/image/whole_living_background_3.jpeg';
@@ -24,19 +23,30 @@ class App extends Component {
       }
     }
     this.getActiveSlide = this.getActiveSlide.bind(this);
+    this.autoPlay = this.autoPlay.bind(this);
   }
 
   componentDidMount() {
     document.addEventListener('DOMContentLoaded', function () {
       let elems = document.querySelectorAll('.carousel');
-      M.Carousel.init(elems, { fullWidth: true });
+      // M.Carousel.init(elems, { fullWidth: true });
+      M.Carousel.init(elems, { noWrap: true });
     });
-    this.getActiveSlide();
+    // this.getActiveSlide();
+    // this.autoPlay();
   }
 
   getActiveSlide() {
     const activeSlide = document.getElementsByClassName('active');
     console.log(activeSlide);
+  }
+
+  autoPlay() {
+    let elem = document.querySelectorAll('.carousel.carousel-slider');
+    const instance = M.Carousel.getInstance(elem);
+    console.log("instance:", instance);
+    instance.next();
+    setTimeout(this.autoPlay, 700);
   }
 
   render() {
@@ -54,12 +64,11 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/about-us" component={AboutUs} />
-            <Route exact path="/result/:queryString" component={SearchResult} />
+            <Route exact path={`/find`} component={SearchResult} />
             <Route component={NotFound} />
           </Switch>
           <Footer />
         </div>
-
       </div>
     );
   }

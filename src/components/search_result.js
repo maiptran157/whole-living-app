@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
 import Map from './map';
+import { withRouter } from 'react-router-dom';
+import queryString from 'query-string';
+import { submitSearch } from '../actions';
+import { connect } from 'react-redux';
 
-export default class SearchResult extends Component {
+class SearchResult extends Component {
+    componentDidMount() {
+        const values = queryString.parse(this.props.location.search);
+        this.props.submitSearch(values);
+        console.log(values);
+    }
+
     render() {
-        console.log(this.props)
-        return <div className="">
+        return <div className="main">
             <Map />
         </div>
     }
 }
+
+
+SearchResult = connect(null, {
+    submitSearch: submitSearch
+})(SearchResult);
+
+export default withRouter(SearchResult);
