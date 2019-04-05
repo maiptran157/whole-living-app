@@ -1,8 +1,6 @@
 import M from 'materialize-css';
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { submitSearch } from '../actions';
-import { connect } from 'react-redux';
 import { renderInput } from '../helpers';
 
 class SearchBar extends Component {
@@ -12,8 +10,7 @@ class SearchBar extends Component {
     }
 
     submitFormHandler = (data) => {
-        this.props.submitSearch(data);
-        this.props.history.push(`/result/address=${data.address}&keyPlace=${data.keyPlace}`)
+        this.props.history.push(`/find?address=${data.address}&keyPlace=${data.keyPlace}`)
     }
 
     render() {
@@ -46,10 +43,6 @@ function validate(data) {
 
     return errors;
 }
-
-SearchBar = connect(null, {
-    submitSearch: submitSearch
-})(SearchBar);
 
 export default reduxForm({
     form: 'submit-search',
