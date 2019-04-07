@@ -1,5 +1,7 @@
 var key = require('./config/api_key').GOOGLE_PLACES_API_KEY;
 var axios = require('axios');
+var Zillow = require('node-zillow');
+var zillowKey = require('./config/api_key').ZWSID;
 
 module.exports = (app, connection) => {
     app.get("/api/getGooglePlacesData", function (req, res) {
@@ -88,6 +90,23 @@ module.exports = (app, connection) => {
         getLatLngFromAddress();
     });
 
+    app.get("/api/getZillowData", function (req, res) {
+        const zillow = new Zillow(zillowKey);
+        const parameters = {
+            // address: "14351 Jessica St.",
+            // citystatezip: "Garden Grove, CA",
+            // rentzestimate: false,
+            // state: "CA",
+            zip: "92843"
+        }
+        // zillow.get('GetRegionChildren', parameters)
+        zillow.get('GetDemographics', parameters)
+            .then(results => {
+                // console.log(results);
+                res.send(results);
+                // return results;
+            })
+    });
 }
 
 
