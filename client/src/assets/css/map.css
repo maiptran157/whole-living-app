@@ -1,11 +1,16 @@
 .map-container { 
     width: 100vw;
-    height: 90.5vh;
+    height: 85vh;
 }
 
 .map-loading-text {
     color: white;
-    height: 78vh;
+    font-size: 50px;
+}
+
+.map-error-text {
+    color: white;
+    font-size: 30px;
 }
 
 .marker img {
@@ -18,4 +23,10 @@
     cursor: pointer;
     transform: translate(-50%, -50%) translate3d(0px, 0px, 0px) scale(1.6, 1.6);
     transition: -webkit-transform 0.25s cubic-bezier(0.485, 1.65, 0.545, 0.835) 0s;
+}
+
+@media only screen and (max-width: 580px) {
+    .marker img {
+        width: 25px;
+    }
 }

@@ -1,5 +1,7 @@
 var key = require('./config/api_key').GOOGLE_PLACES_API_KEY;
 var axios = require('axios');
+var Zillow = require('node-zillow');
+var zillowKey = require('./config/api_key').ZWSID;
 
 module.exports = (app, connection) => {
     app.get("/api/getGooglePlacesData", function (req, res) {
@@ -12,7 +14,7 @@ module.exports = (app, connection) => {
         var searchResult = [];
         var dataToSend = {};
         dataToSend.mapCenter = null;
-        dataToSend.places = []
+        dataToSend.places = [];
         //get nearby key places
         const getDataFromGooglePlaces = async () => {
             try {
@@ -42,12 +44,14 @@ module.exports = (app, connection) => {
             connection.getConnection(function (error, tempCont) {
                 if (!!error) {
                     tempCont.release();
+                    res.send(error);
                     console.log('Error');
                 } else {
                     console.log('Connected');
                     tempCont.query(geospatialSearchQuery, [location.lat, location.lat, location.lng], function (error, rows, field) {
                         tempCont.release();
                         if (!!error) {
+                            res.send(error);
                             console.log('Error in the query:', error);
                         } else {
                             console.log("Successful query\n");
@@ -88,6 +92,23 @@ module.exports = (app, connection) => {
         getLatLngFromAddress();
     });
 
+    app.get("/api/getZillowData", function (req, res) {
+        const zillow = new Zillow(zillowKey);
+        const parameters = {
+            // address: "14351 Jessica St.",
+            // citystatezip: "Garden Grove, CA",
+            // rentzestimate: false,
+            // state: "CA",
+            zip: "92843"
+        }
+        // zillow.get('GetRegionChildren', parameters)
+        zillow.get('GetDemographics', parameters)
+            .then(results => {
+                // console.log(results);
+                res.send(results);
+                // return results;
+            })
+    });
 }
 
 

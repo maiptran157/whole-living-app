@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/static/media/whole_living_background_4.bea5ea10.jpeg"
   },
   {
-    "revision": "54ea69cdf922cc35f975",
-    "url": "/static/css/main.42893901.chunk.css"
+    "revision": "3a0cb002b8b3682bfdfa",
+    "url": "/static/css/main.31176bd4.chunk.css"
   },
   {
     "revision": "fdfcfda2d9b1bf31db52",
@@ -16,8 +16,8 @@ self.__precacheManifest = [
     "url": "/static/media/starbucks_icon.d08e3832.png"
   },
   {
-    "revision": "529f2f64f374bf9bf59d",
-    "url": "/static/js/2.529f2f64.chunk.js"
+    "revision": "7b718f1019ee367f44e6",
+    "url": "/static/js/2.7b718f10.chunk.js"
   },
   {
     "revision": "2935e2708c84795d221d2ba5fb98cc8e",
@@ -32,8 +32,8 @@ self.__precacheManifest = [
     "url": "/static/media/whole_living_background_3.fa231f26.jpeg"
   },
   {
-    "revision": "54ea69cdf922cc35f975",
-    "url": "/static/js/main.54ea69cd.chunk.js"
+    "revision": "3a0cb002b8b3682bfdfa",
+    "url": "/static/js/main.3a0cb002.chunk.js"
   },
   {
     "revision": "43423bff2c47ada0ac23f0730ae6a75d",
@@ -56,11 +56,11 @@ self.__precacheManifest = [
     "url": "/static/media/trader_joe_icon.e52e2987.png"
   },
   {
-    "revision": "529f2f64f374bf9bf59d",
+    "revision": "7b718f1019ee367f44e6",
     "url": "/static/css/2.2259ac1e.chunk.css"
   },
   {
-    "revision": "df1d9e6302027ab44d5eb5cdb7fd5f65",
+    "revision": "c128f1fc5ca9c61a0277174fadf00336",
     "url": "/index.html"
   }
 ];

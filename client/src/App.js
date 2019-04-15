@@ -22,8 +22,8 @@ class App extends Component {
         backgroundImage: `url(${image2})`
       }
     }
-    this.getActiveSlide = this.getActiveSlide.bind(this);
-    this.autoPlay = this.autoPlay.bind(this);
+    // this.getActiveSlide = this.getActiveSlide.bind(this);
+    // this.autoPlay = this.autoPlay.bind(this);
   }
 
   componentDidMount() {
@@ -36,18 +36,18 @@ class App extends Component {
     // this.autoPlay();
   }
 
-  getActiveSlide() {
-    const activeSlide = document.getElementsByClassName('active');
-    console.log(activeSlide);
-  }
+  // getActiveSlide() {
+  //   const activeSlide = document.getElementsByClassName('active');
+  //   console.log(activeSlide);
+  // }
 
-  autoPlay() {
-    let elem = document.querySelectorAll('.carousel.carousel-slider');
-    const instance = M.Carousel.getInstance(elem);
-    console.log("instance:", instance);
-    instance.next();
-    setTimeout(this.autoPlay, 700);
-  }
+  // autoPlay() {
+  //   let elem = document.querySelectorAll('.carousel.carousel-slider');
+  //   const instance = M.Carousel.getInstance(elem);
+  //   console.log("instance:", instance);
+  //   instance.next();
+  //   setTimeout(this.autoPlay, 700);
+  // }
 
   render() {
     return (
