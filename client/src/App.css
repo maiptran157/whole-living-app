@@ -7,13 +7,13 @@
 }
 
 .background-image {
-  height: 100vh;
   opacity: 0.7;
   width: 100vw;
   height: 100vh;
 }
 
 .carousel-item {
+  margin: 0;
   transform: none !important;
 }
 
@@ -32,6 +32,20 @@
   flex-direction: column;
 }
 
+.page-footer{
+  padding-bottom: 20px;
+}
+
 .main{
   flex: 1 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .background-image {
+    width: 200vw;
+  }
+  
+  .carousel-item {
+    margin-left: -50vw;
+  }
 }

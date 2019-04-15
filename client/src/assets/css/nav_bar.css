@@ -5,7 +5,10 @@
 }
 
 @media only screen and (max-width: 414px) {
-    .brand-logo {
-        font-size: 30px;
+    .brand-logo img {
+        width: 30px;
+    }
+    nav .brand-logo {
+        font-size: 25px;
     }
 }

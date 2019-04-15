@@ -9,7 +9,6 @@ class SearchResult extends Component {
     componentDidMount() {
         const values = queryString.parse(this.props.location.search);
         this.props.submitSearch(values);
-        console.log(values);
     }
 
     render() {

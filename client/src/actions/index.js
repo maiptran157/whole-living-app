@@ -8,8 +8,12 @@ export const submitSearch = data => async dispatch => {
             type: types.SUBMIT_SEARCH,
             payload: resp.data
         })
-    } catch (err) {
-        console.log(err)                     //Axios entire error message
+    } catch (error) {
+        dispatch({
+            type: types.SUBMIT_SEARCH,
+            payload: error.message
+        })
+        console.log(error);                    //Axios entire error message
     }
 }
 
