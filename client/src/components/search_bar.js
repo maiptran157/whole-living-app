@@ -32,6 +32,7 @@ class SearchBar extends Component {
     handleScriptLoad() {
         // Initialize Google Autocomplete
         /*global google*/ // To disable any eslint 'google not defined' errors
+        this.autocomplete = null;
         this.autocomplete = new google.maps.places.Autocomplete(
             document.getElementById('address')
         );
@@ -47,19 +48,18 @@ class SearchBar extends Component {
         if (address) {
             // Set State
             this.setState({
-                    city: address[0].long_name,
-                    query: addressObject.formatted_address,
-                });
+                city: address[0].long_name,
+                query: addressObject.formatted_address,
+            });
         }
     }
 
-    componentWillUnmount (){
-        const allScripts = document.getElementsByTagName( 'script' );
-        [].filter.call(
-          allScripts, 
-          ( scpt ) => scpt.src.indexOf(`key=${apiKey.GOOGLE_PLACES_API_KEY}`) >= 0
-         )[ 0 ].remove();
-         window.google = {};
+    componentWillUnmount() {
+        // window.google = {};
+        this.setState({
+            city: '',
+            query: ''
+        })
     }
 
     render() {
