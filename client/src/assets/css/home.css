@@ -1,6 +1,3 @@
-/* .home-container {
-} */
-
 .search-bar-container {
     margin-top: 30px;
     padding-top: 50px;
@@ -12,5 +9,44 @@
 .slogan-text {
     margin-top: 20px;
     font-size: 40px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: transparent;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: transparent;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: transparent;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color: transparent;
+}
+
+textarea::-webkit-input-placeholder { /* WebKit browsers */
+    color: transparent;
+}
+textarea:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: transparent;
+}
+textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: transparent;
+}
+textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color: transparent;
+}
+
+@media only screen and (max-width: 700px) {
+    .slogan-text {
+        margin-top: 10px;
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .slogan-text {
+        font-size: 23px;
+    }
 }

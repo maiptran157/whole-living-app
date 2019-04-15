@@ -1,7 +1,7 @@
 import types from '../actions/types';
 
 const DEFAULT_STATE = {
-    locationList: null,
+    locationList: null
 }
 
 export default (state = DEFAULT_STATE, action) => {

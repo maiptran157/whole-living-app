@@ -3,13 +3,17 @@ import axios from 'axios';
 
 export const submitSearch = data => async dispatch => {
     try {
-        const resp = await axios.get(`/api/getGooglePlacesData?address=${data.address}&&keyPlace=${data.keyPlace}`)
+        const resp = await axios.get(`http://localhost:5000/api/getGooglePlacesData?address=${data.address}&&keyPlace=${data.keyPlace}`)
         dispatch({
             type: types.SUBMIT_SEARCH,
             payload: resp.data
         })
-    } catch (err) {
-        console.log(err)                     //Axios entire error message
+    } catch (error) {
+        dispatch({
+            type: types.SUBMIT_SEARCH,
+            payload: error.message
+        })
+        console.log(error);                    //Axios entire error message
     }
 }
 

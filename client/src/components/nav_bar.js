@@ -9,11 +9,6 @@ export default class Navbar extends Component {
             <div className="nav-wrapper">
                 <Link to="/" className="brand-logo center"> <img src={wholeLivingIcon} alt="" />
                     Whole Living</Link>
-                {/* <ul id="nav-mobile" className="left hide-on-med-and-down">
-            <li><a href="#">Sass</a></li>
-            <li><a href="#">Components</a></li>
-            <li><a href="#">JavaScript</a></li>
-          </ul> */}
             </div>
         </nav>
     }

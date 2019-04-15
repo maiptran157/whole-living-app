@@ -87,9 +87,12 @@ class Map extends Component {
 
     render() {
         const { locationList } = this.props;
-        console.log("locationList:", locationList);
         if (locationList) {
-            const { mapCenter, places } = locationList.payload;
+            const { payload } = locationList;
+            if (typeof payload == "string") {
+                return <h1 className="center map-error-text">There is an error trying to process this request. Please try again later.</h1>
+            }
+            const { mapCenter, places } = payload;
             return (
                 <div className="map-container">
                     <GoogleMapReact
