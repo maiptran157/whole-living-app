@@ -16,6 +16,7 @@ module.exports = (app, connection) => {
         var dataToSend = {};
         dataToSend.mapCenter = null;
         dataToSend.places = [];
+        dataToSend.demographicData = null;
         //get nearby key places
         const getDataFromGooglePlaces = async () => {
             try {
@@ -72,7 +73,23 @@ module.exports = (app, connection) => {
             })
         }
 
-        //get latitude and longitude from address and call getDataFromGooglePlaces
+        //get Demographics Data based on lat and long
+        const getDemographicData = async () => {
+            try {
+                var urlForDemographicDataAPI = `https://geoenrich.arcgis.com/arcgis/rest/services/World/geoenrichmentserver/GeoEnrichment/enrich?f=json&token=${esriToken}&inSR=4326&outSR=4326&returnGeometry=true&studyAreas=[{"geometry":{"x": ${location.lng},"y": ${location.lat}}}]& studyAreasOptions={"areaType": "RingBuffer","bufferUnits": "esriMiles","bufferRadii": [1]}& dataCollections=["KeyGlobalFacts", "KeyUSFacts"]`;
+                const response = await axios.get(urlForDemographicDataAPI);
+                if (response.status === 200) {
+                    dataToSend.demographicData = response.data.results[0].value.FeatureSet;
+                } else {
+                    res.send(response);
+                }
+            }
+            catch (error) {
+                res.send(error);
+            }
+        }
+
+        //get latitude and longitude from address and call getDataFromGooglePlaces, getDataFromWFMdb, getDemographicData
         const getLatLngFromAddress = async () => {
             try {
                 const response = await axios.get(urlForGeocodingAPI);
@@ -80,6 +97,7 @@ module.exports = (app, connection) => {
                     location = response.data.results[0].geometry.location;
                     dataToSend.mapCenter = location;
                     await getDataFromGooglePlaces();
+                    await getDemographicData();
                     await getDataFromWFMdb();
                 } else {
                     res.send(response);
@@ -112,13 +130,14 @@ module.exports = (app, connection) => {
     });
 
     app.get("/api/getDemographicData", function (req, res) {
-        var urlForDemographicDataAPI = `https://geoenrich.arcgis.com/arcgis/rest/services/World/geoenrichmentserver/GeoEnrichment/enrich?f=json&token=${esriToken}&inSR=4326&outSR=4326&returnGeometry=true&studyAreas=[{"geometry":{"x": -118.09047,"y": 33.81091}}]& studyAreasOptions={"areaType": "RingBuffer","bufferUnits": "esriMiles","bufferRadii": [1]}& dataCollections=["KeyGlobalFacts", "KeyUSFacts"]`;
         const getDemographicData = async () => {
             try {
-                // urlForDemographicDataAPI = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${keyPlace.split(" ").join("+")}&location=${location.lat},${location.lng}&radius=10000&key=${key}`;
+                var urlForDemographicDataAPI = `https://geoenrich.arcgis.com/arcgis/rest/services/World/geoenrichmentserver/GeoEnrichment/enrich?f=json&token=${esriToken}&inSR=4326&outSR=4326&returnGeometry=true&studyAreas=[{"geometry":{"x": -118.09047,"y": 33.81091}}]& studyAreasOptions={"areaType": "RingBuffer","bufferUnits": "esriMiles","bufferRadii": [1]}& dataCollections=["KeyGlobalFacts", "KeyUSFacts"]`;
                 const response = await axios.get(urlForDemographicDataAPI);
                 if (response.status === 200) {
-                    res.json(response.data);
+                    // res.send(response.data.results[0].value.FeatureSet);
+                    console.log(response.data);
+                    res.send(response.data);
                 } else {
                     res.send(response);
                 }
