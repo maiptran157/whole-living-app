@@ -1,3 +1,4 @@
+import '../assets/css/search_result.css';
 import React, { Component } from 'react';
 import Map from './map';
 import { withRouter } from 'react-router-dom';
@@ -12,8 +13,9 @@ class SearchResult extends Component {
     }
 
     render() {
-        return <div className="main">
+        return <div className="search-result-container main">
             <Map />
+            <div className="demographics-container"></div>
         </div>
     }
 }

@@ -66,7 +66,7 @@ class SearchBar extends Component {
         const { handleSubmit } = this.props;
         return (<div className="row search-bar-container">
             <form className="col s8 offset-s2 form-style" action="" onSubmit={handleSubmit(this.submitFormHandler)}>
-                <Field name="address" id="address" value={this.state.query} component={renderInput} label="Address" />
+                <Field name="address" id="address" component={renderInput} label="Address" />
                 <Script url={`https://maps.googleapis.com/maps/api/js?key=${apiKey.GOOGLE_PLACES_API_KEY}&libraries=places`} onLoad={this.handleScriptLoad} />
                 <Field name="keyPlace" id="keyPlace" component={renderInput} label="Key place" />
                 <div className="row">
@@ -88,7 +88,7 @@ function validate(data) {
     }
 
     if (!keyPlace) {
-        errors.keyPlace = 'Please fill out the key place you want to live by.';
+        errors.keyPlace = 'Please fill out the place/store you want to live by.';
     }
 
     return errors;

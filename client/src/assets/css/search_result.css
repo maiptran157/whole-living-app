@@ -1,0 +1,9 @@
+.search-result-container {
+    display: flex;
+}
+
+.demographics-container {
+    width: 40vw;
+    height: 85vh;
+    background: white;
+}

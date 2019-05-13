@@ -2,6 +2,7 @@ var key = require('./config/api_key').GOOGLE_PLACES_API_KEY;
 var axios = require('axios');
 var Zillow = require('node-zillow');
 var zillowKey = require('./config/api_key').ZWSID;
+var esriToken = require('./config/api_key').ESRI_TOKEN;
 
 module.exports = (app, connection) => {
     app.get("/api/getGooglePlacesData", function (req, res) {
@@ -109,6 +110,26 @@ module.exports = (app, connection) => {
                 // return results;
             })
     });
+
+    app.get("/api/getDemographicData", function (req, res) {
+        var urlForDemographicDataAPI = `https://geoenrich.arcgis.com/arcgis/rest/services/World/geoenrichmentserver/GeoEnrichment/enrich?f=json&token=${esriToken}&inSR=4326&outSR=4326&returnGeometry=true&studyAreas=[{"geometry":{"x": -118.09047,"y": 33.81091}}]& studyAreasOptions={"areaType": "RingBuffer","bufferUnits": "esriMiles","bufferRadii": [1]}& dataCollections=["KeyGlobalFacts", "KeyUSFacts"]`;
+        const getDemographicData = async () => {
+            try {
+                // urlForDemographicDataAPI = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${keyPlace.split(" ").join("+")}&location=${location.lat},${location.lng}&radius=10000&key=${key}`;
+                const response = await axios.get(urlForDemographicDataAPI);
+                if (response.status === 200) {
+                    res.json(response.data);
+                } else {
+                    res.send(response);
+                }
+            }
+            catch (error) {
+                res.send(error);
+            }
+        }
+        getDemographicData();
+    });
+
 }
 
 

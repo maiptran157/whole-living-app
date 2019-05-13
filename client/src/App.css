@@ -1,51 +1,19 @@
 .app-container {
+  width: 100vw;
+  height: 100vh;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  width: 100vw;
-  height: 100vh;
-}
-
-.background-image {
-  opacity: 0.7;
-  width: 100vw;
-  height: 100vh;
-}
-
-.carousel-item {
-  margin: 0;
-  transform: none !important;
-}
-
-.carousel .carousel-item>img {
-  width: inherit;
-  image-rendering: optimizeSpeed;
-}
-
-.page{
-  top: 0;
-  width: -webkit-fill-available;
-  position: absolute;
-  background: none;
+  background-image: url(./assets//image/whole_living_background_5.jpeg);
+  overflow: hidden;
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
-}
-
-.page-footer{
-  padding-bottom: 20px;
 }
 
 .main{
   flex: 1 0 auto;
 }
 
-@media screen and (max-width: 768px) {
-  .background-image {
-    width: 200vw;
-  }
-  
-  .carousel-item {
-    margin-left: -50vw;
-  }
+.page-footer{
+  padding-bottom: 20px;
 }
